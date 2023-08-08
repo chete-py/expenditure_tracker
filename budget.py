@@ -117,7 +117,7 @@ def main():
     elif view == "Records":
         # Show the saved DataFrame here
         st.subheader("RECORDS") 
-        lastdf = pd.read_csv("expenses.csv)
+        lastdf = pd.read_csv("expenses.csv")
         fig1 = go.Figure(data=[go.Table(
             header=dict(values=list(lastdf.columns)),
             cells=dict(values=[lastdf[col] for col in lastdf.columns]))
