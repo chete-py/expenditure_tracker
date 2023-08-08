@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import plotly as px
 import plotly.graph_objects as go
 
 # title of the app
@@ -114,7 +115,7 @@ def main():
             st.success("New Record added successfully!")
 
 
-    elif view == "RECORDS":
+    elif view == "Records":
         # Show the saved DataFrame here
         st.subheader("RECORDS") 
         newdf = pd.read_csv("expenses.csv")  
