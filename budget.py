@@ -82,7 +82,7 @@ def main():
 
         # Create a bar chart for Category vs. Amount using Plotly
         fig = go.Figure(data=[go.Bar(x=newdf['Category'], y=newdf['Amount'])])
-        fig.update_layout(title={'text': 'CLASSIFIED EXPENSES', 'x': 0.5, 'xanchor': 'center'}, 
+        fig.update_layout(title={'text': 'AGGREGATE EXPENSES', 'x': 0.5, 'xanchor': 'center'}, 
                                   xaxis_title='Category',
                                   yaxis_title='Amount',
                                   xaxis=dict(tickfont=dict(size=8)),                                  
@@ -122,7 +122,7 @@ def main():
             header=dict(values=list(lastdf.columns)),
             cells=dict(values=[lastdf[col] for col in lastdf.columns]))
         ])
-        fig1.update_layout(title_text="Expense Records")
+        fig1.update_layout(title_text="EXPENSE RECORDS", title_x=0.5)
         st.plotly_chart(fig1)
 
     
