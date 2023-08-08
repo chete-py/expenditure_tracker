@@ -117,13 +117,13 @@ def main():
     elif view == "Records":
         # Show the saved DataFrame here
         st.subheader("RECORDS") 
-        lastdf = pd.read_csv("expenses.csv")  
-
-        # Convert any np.bool columns to bool
-        for col in lastdf.select_dtypes(include=['np.bool']):
-            lastdf[col] = lastdf[col].astype(bool)
-        
-        st.dataframe(lastdf)
+        lastdf = pd.read_csv("expenses.csv)
+        fig1 = go.Figure(data=[go.Table(
+            header=dict(values=list(lastdf.columns)),
+            cells=dict(values=[lastdf[col] for col in lastdf.columns]))
+        ])
+        fig1.update_layout(title_text="Expense Records")
+        st.plotly_chart(fig1)
 
     
 if __name__ == "__main__":
