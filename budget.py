@@ -117,8 +117,8 @@ def main():
     elif view == "Records":
         # Show the saved DataFrame here
         st.subheader("RECORDS") 
-        newdf = pd.read_csv("expenses.csv")  
-        st.dataframe(newdf)
+        lastdf = pd.read_csv("expenses.csv")  
+        st.dataframe(lastdf)
 
     
 if __name__ == "__main__":
