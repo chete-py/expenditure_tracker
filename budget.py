@@ -118,6 +118,11 @@ def main():
         # Show the saved DataFrame here
         st.subheader("RECORDS") 
         lastdf = pd.read_csv("expenses.csv")  
+
+        # Convert any np.bool columns to bool
+        for col in lastdf.select_dtypes(include=['np.bool']):
+            lastdf[col] = lastdf[col].astype(bool)
+        
         st.dataframe(lastdf)
 
     
