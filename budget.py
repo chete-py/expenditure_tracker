@@ -69,7 +69,7 @@ def main():
         # Display the most expensive item in a custom card-like layout
         st.markdown(
         f'<div style= "display: flex; flex-direction: row;">'  # Container with flex layout
-        f'<div style="background-color: #98FB98; padding: 10px; border-radius: 10px; width: 250px; margin-right: 20px;">'
+        f'<div style="background-color: #f19584; padding: 10px; border-radius: 10px; width: 250px; margin-right: 20px;">'
         f'<strong style="color: black;">FREQUENT CATEGORY</strong> <br>'
         f"{most_frequent_category}<br>"
         f"{frequent_category_count} times<br>"
@@ -79,7 +79,7 @@ def main():
         f"{most_expensive_item['Use'].values[0]}<br>"
         f"Ksh. {int(most_expensive_item['Amount'].values[0]):,}"
         f'</div>'
-        f'<div style="background-color: #98FB98; padding: 10px; border-radius: 10px; width: 250px;">'
+        f'<div style="background-color: #99b27f; padding: 10px; border-radius: 10px; width: 250px;">'
         f'<strong style="color: black;">FREQUENT OUTLET</strong> <br>'
         f"{most_visited_store}<br>"
         f"{frequent_outlet_percentage:.0f}% of the time<br>"
