@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import plotly as px
 import plotly.graph_objects as go
 
@@ -139,7 +140,7 @@ def main():
 
         # Display the Markdown-formatted table using st.markdown()
         # st.markdown(markdown_table, unsafe_allow_html=True)
-        st.dataframe(lastdf)
+        st.table(lastdf)
         
        
 if __name__ == "__main__":
