@@ -135,11 +135,11 @@ def main():
         lastdf = pd.read_csv("expenses.csv")
 
         # Convert the data frame to Markdown table format
-        markdown_table = lastdf.to_markdown(index=False)
+        # markdown_table = lastdf.to_markdown(index=False)
 
         # Display the Markdown-formatted table using st.markdown()
-        st.markdown(markdown_table, unsafe_allow_html=True)
-        #st.write(lastdf)
+        # st.markdown(markdown_table, unsafe_allow_html=True)
+        st.dataframe(lastdf)
         
        
 if __name__ == "__main__":
