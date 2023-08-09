@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly as px
 import plotly.graph_objects as go
+import tabulate
 
 # title of the app
 #st.title("MONTHLY EXPENSES")
