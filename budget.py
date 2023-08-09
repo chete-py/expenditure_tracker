@@ -64,7 +64,7 @@ def main():
         st.markdown(
         f'<div style= "display: flex; flex-direction: row;">'  # Container with flex layout
         f'<div style="background-color: #98FB98; padding: 10px; border-radius: 10px; width: 250px; margin-right: 20px;">'
-        f'<strong style="color: black;">MOST FREQUENT CATEGORY</strong> <br>'
+        f'<strong style="color: black;">FREQUENT CATEGORY</strong> <br>'
         f"{most_frequent_category}<br>"
         f'</div>'
         f'<div style="background-color: #AED6F1; padding: 10px; border-radius: 10px; width: 250px; margin-right: 20px;">'
@@ -72,7 +72,7 @@ def main():
         f"{most_expensive_item['Use'].values[0]}<br>"
         f'</div>'
         f'<div style="background-color: #98FB98; padding: 10px; border-radius: 10px; width: 250px;">'
-        f'<strong style="color: black;">FREQUENTLY USED OUTLET</strong> <br>'
+        f'<strong style="color: black;">FREQUENT OUTLET</strong> <br>'
         f"{most_visited_store}<br>"
         f'</div>'
         f'</div>',  # End of container
@@ -122,7 +122,7 @@ def main():
             header=dict(values=list(lastdf.columns)),
             cells=dict(values=[lastdf[col] for col in lastdf.columns]))
         ])
-        fig1.update_layout(title_text="EXPENSE RECORDS", title_x=0.5)
+        fig1.update_layout(title_text="EXPENSE RECORDS", title_x=0.4)
         st.plotly_chart(fig1)
 
     
