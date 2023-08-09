@@ -55,6 +55,12 @@ def main():
 
         # Find the most visited store
         most_visited_store = newdf['Store'].mode().values[0]
+
+        # Calculate the number of times the frequent category occurred
+        frequent_category_count = newdf[newdf['Category'] == most_frequent_category].shape[0]
+    
+        # Calculate the percentage for the frequent outlet
+        frequent_outlet_percentage = (newdf[newdf['Store'] == most_visited_store].shape[0] / len(newdf)) * 100
     
         # Calculate monthly average expenditure
         #monthly_average_expenditure = newdf.groupby(newdf['Date'].dt.to_period('M'))['Amount'].mean()
@@ -66,14 +72,17 @@ def main():
         f'<div style="background-color: #98FB98; padding: 10px; border-radius: 10px; width: 250px; margin-right: 20px;">'
         f'<strong style="color: black;">FREQUENT CATEGORY</strong> <br>'
         f"{most_frequent_category}<br>"
+        f"{frequent_category_count} times<br>"
         f'</div>'
         f'<div style="background-color: #AED6F1; padding: 10px; border-radius: 10px; width: 250px; margin-right: 20px;">'
         f'<strong style="color: black;">MOST EXPENSIVE ITEM</strong> <br>'
         f"{most_expensive_item['Use'].values[0]}<br>"
+        f"Ksh. {most_expensive_item['Amount'].values[0]}"
         f'</div>'
         f'<div style="background-color: #98FB98; padding: 10px; border-radius: 10px; width: 250px;">'
         f'<strong style="color: black;">FREQUENT OUTLET</strong> <br>'
         f"{most_visited_store}<br>"
+        f"{frequent_outlet_percentage:.2f}%<br>"
         f'</div>'
         f'</div>',  # End of container
         unsafe_allow_html=True
