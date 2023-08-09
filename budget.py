@@ -135,7 +135,8 @@ def main():
         st.subheader("RECORDS") 
         lastdf = pd.read_csv("expenses.csv")
 
-        last_df = lastdf.to_html(index=False)
+        lastdf = lastdf.to_html(index=False)
+        last_df = lastdf.replace('<table', '<table style="font-size: 12px;"')
 
         # Convert the data frame to Markdown table format
         # markdown_table = lastdf.to_markdown(index=False)
@@ -143,6 +144,7 @@ def main():
         # Display the Markdown-formatted table using st.markdown()
         # st.markdown(markdown_table, unsafe_allow_html=True)
         #st.table(lastdf)
+
         st.markdown(last_df, unsafe_allow_html=True)
         
        
