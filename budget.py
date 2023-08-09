@@ -77,7 +77,7 @@ def main():
         f'<div style="background-color: #AED6F1; padding: 10px; border-radius: 10px; width: 250px; margin-right: 20px;">'
         f'<strong style="color: black;">MOST EXPENSIVE ITEM</strong> <br>'
         f"{most_expensive_item['Use'].values[0]}<br>"
-        f"Ksh. {most_expensive_item['Amount'].values[0]}"
+        f"Ksh. {int(most_expensive_item['Amount'].values[0])}"
         f'</div>'
         f'<div style="background-color: #98FB98; padding: 10px; border-radius: 10px; width: 250px;">'
         f'<strong style="color: black;">FREQUENT OUTLET</strong> <br>'
@@ -88,9 +88,15 @@ def main():
         unsafe_allow_html=True
         )
 
-
-        # Create a bar chart for Category vs. Amount using Plotly
-        fig = go.Figure(data=[go.Bar(x=newdf['Category'], y=newdf['Amount'])])
+         # Calculate the sum of amounts for each category
+        category_sum_amounts = newdf.groupby('Category')['Amount'].sum()
+    
+        # Create a bar chart for Category vs. Sum of Amounts using Plotly
+        fig = go.Figure(data=[go.Bar(
+        x=category_sum_amounts.index,
+        y=category_sum_amounts        
+        )])
+        
         fig.update_layout(title={'text': 'AGGREGATE EXPENSES', 'x': 0.5, 'xanchor': 'center'}, 
                                   xaxis_title='Category',
                                   yaxis_title='Amount',
