@@ -133,14 +133,9 @@ def main():
         # Show the saved DataFrame here
         st.subheader("RECORDS") 
         lastdf = pd.read_csv("expenses.csv")
-        fig1 = go.Figure(data=[go.Table(
-            header=dict(values=list(lastdf.columns)),
-            cells=dict(values=[lastdf[col] for col in lastdf.columns]))
-        ])
-        fig1.update_layout(title_text="EXPENSE RECORDS", title_x=0.4)
-        st.plotly_chart(fig1)
-
-    
+        st.write(lastdf)
+        
+       
 if __name__ == "__main__":
     main()
 
