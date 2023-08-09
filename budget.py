@@ -135,12 +135,15 @@ def main():
         st.subheader("RECORDS") 
         lastdf = pd.read_csv("expenses.csv")
 
+        last_df = lastdf.to_html(index=False)
+
         # Convert the data frame to Markdown table format
         # markdown_table = lastdf.to_markdown(index=False)
 
         # Display the Markdown-formatted table using st.markdown()
         # st.markdown(markdown_table, unsafe_allow_html=True)
-        st.table(lastdf)
+        #st.table(lastdf)
+        st.markdown(last_df, unsafe_allow_html=True)
         
        
 if __name__ == "__main__":
