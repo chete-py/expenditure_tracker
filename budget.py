@@ -77,12 +77,12 @@ def main():
         f'<div style="background-color: #AED6F1; padding: 10px; border-radius: 10px; width: 250px; margin-right: 20px;">'
         f'<strong style="color: black;">MOST EXPENSIVE ITEM</strong> <br>'
         f"{most_expensive_item['Use'].values[0]}<br>"
-        f"Ksh. {int(most_expensive_item['Amount'].values[0])}"
+        f"Ksh. {int(most_expensive_item['Amount'].values[0]):,}"
         f'</div>'
         f'<div style="background-color: #98FB98; padding: 10px; border-radius: 10px; width: 250px;">'
         f'<strong style="color: black;">FREQUENT OUTLET</strong> <br>'
         f"{most_visited_store}<br>"
-        f"{frequent_outlet_percentage:.2f}%<br>"
+        f"{frequent_outlet_percentage:.0f}% of the time<br>"
         f'</div>'
         f'</div>',  # End of container
         unsafe_allow_html=True
