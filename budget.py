@@ -103,6 +103,12 @@ def main():
                                   yaxis_title='Amount',
                                   xaxis=dict(tickfont=dict(size=8)),                                  
                                   )
+        
+        # Set the color for bars
+        bar_color = '#3CB371'
+        for trace in fig.data:
+            trace.marker.color = bar_color
+
         st.plotly_chart(fig)
 
         
