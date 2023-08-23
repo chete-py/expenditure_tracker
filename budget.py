@@ -124,28 +124,21 @@ def main():
         fig_clock = go.Figure(go.Indicator(
         mode="gauge+number",
         value=highest_expense_amount,
-        domain={'x': [0, 1], 'y': [0, 0.8]},
+        domain={'x': [0, 1], 'y': [0, 1]},
+        # Change the 'title' property to 'number'
         number={'suffix': " Ksh"},
         gauge={'axis': {'range': [None, highest_expense_amount * 1.2]},
-               'bar': {'color': "red"},
-               'steps': [
-                   {'range': [0, highest_expense_amount * 0.5], 'color': "lightgray"},
-                   {'range': [highest_expense_amount * 0.5, highest_expense_amount * 0.8], 'color': "gray"}],
-               },
-    ))
-
-        # Get the month name for the highest_monthly_expense
-        month_name = calendar.month_name[highest_monthly_expense.month]
+                'bar': {'color': "red"},
+                'steps': [
+                    {'range': [0, highest_expense_amount * 0.5], 'color': "lightgray"},
+                    {'range': [highest_expense_amount * 0.5, highest_expense_amount * 0.8], 'color': "gray"}],
+                },
+        ))
         
-        # Create a label with the month name above the gauge
-        label = f"{month_name}"
-        st.write(label)
-        
-        # Adjust the size of the gauge
-        fig_clock.update_layout(height=300, width=300)  # Change the height and width as needed
+        fig_clock.update_layout(title_text='HIGHEST MONTHLY EXPENSE', title_x=0.5)  # Add title using update_layout
         
         # Display the Clock figure
-        st.plotly_chart(fig_clock)
+        st.plotly_chart(fig_clock)      
         
         
     
