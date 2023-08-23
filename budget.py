@@ -112,26 +112,32 @@ def main():
         st.plotly_chart(fig)
 
         
-        # Create a bar graph using Matplotlib
-        #fig = go.Figure(data=[go.Bar(x=newdf['Category'], y=newdf['Amount'])])
-        #fig.update_layout(title='Category vs. Amount',xaxis_title='Category',yaxis_title='Amount',xaxis=dict(tickangle=-45),)
-        #st.plotly_chart(fig)
-        
-        # Calculate average monthly expenditure
+        # Calculate highest monthly expense
         newdf['Date'] = pd.to_datetime(newdf['Date'])  # Convert 'Date' column to datetime
         newdf['Month'] = newdf['Date'].dt.to_period('M')  # Create a new 'Month' column
-        monthly_average_expenditure = newdf.groupby('Month')['Amount'].mean()
+        highest_monthly_expense = newdf.groupby('Month')['Amount'].sum().idxmax()
 
-        # Create a Sunburst chart for average monthly expenditure
-        fig_sunburst = go.Figure(go.Sunburst(
-            labels=monthly_average_expenditure.index.strftime('%b %Y'),  # Format month labels
-            parents=[''] * len(monthly_average_expenditure),
-            values=monthly_average_expenditure.values,
+        # Get the highest expense amount for the corresponding month
+        highest_expense_amount = newdf[newdf['Month'] == highest_monthly_expense]['Amount'].sum()
+
+        # Create a Clock figure for the highest monthly expense
+        fig_clock = go.Figure(go.Indicator(
+            mode="gauge+number",
+            value=highest_expense_amount,
+            domain={'x': [0, 1], 'y': [0, 1]},
+            title={'text': 'HIGHEST MONTHLY EXPENSE', 'x': 0.5, 'xanchor': 'center'},
+            gauge={'axis': {'range': [None, highest_expense_amount * 1.2]},
+                   'bar': {'color': "red"},
+                   'steps': [
+                       {'range': [0, highest_expense_amount * 0.5], 'color': "lightgray"},
+                       {'range': [highest_expense_amount * 0.5, highest_expense_amount * 0.8], 'color': "gray"}],
+                   },
+            number={'suffix': " Ksh"},
         ))
 
-        fig_sunburst.update_layout(title={'text': 'AVERAGE MONTHLY EXPENDITURE', 'x': 0.5, 'xanchor': 'center'})
+        # Display the Clock figure
+        st.plotly_chart(fig_clock)        
         
-        st.plotly_chart(fig_sunburst)
     
     elif view == "New Item":
         # Add the dashboard elements here
