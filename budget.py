@@ -120,21 +120,22 @@ def main():
         # Get the highest expense amount for the corresponding month
         highest_expense_amount = newdf[newdf['Month'] == highest_monthly_expense]['Amount'].sum()
 
-        # Create a Clock figure for the highest monthly expense
         fig_clock = go.Figure(go.Indicator(
-            mode="gauge+number",
-            value=highest_expense_amount,
-            domain={'x': [0, 1], 'y': [0, 1]},
-            title={'text': 'HIGHEST MONTHLY EXPENSE', 'x': 0.5, 'xanchor': 'center'},
-            gauge={'axis': {'range': [None, highest_expense_amount * 1.2]},
-                   'bar': {'color': "red"},
-                   'steps': [
-                       {'range': [0, highest_expense_amount * 0.5], 'color': "lightgray"},
-                       {'range': [highest_expense_amount * 0.5, highest_expense_amount * 0.8], 'color': "gray"}],
-                   },
-            number={'suffix': " Ksh"},
-        ))
+        mode="gauge+number",
+        value=highest_expense_amount,
+        domain={'x': [0, 1], 'y': [0, 1]},
+        # Change the 'title' property to 'number'
+        number={'suffix': " Ksh"},
+        gauge={'axis': {'range': [None, highest_expense_amount * 1.2]},
+               'bar': {'color': "red"},
+               'steps': [
+                   {'range': [0, highest_expense_amount * 0.5], 'color': "lightgray"},
+                   {'range': [highest_expense_amount * 0.5, highest_expense_amount * 0.8], 'color': "gray"}],
+               },
+            ))
 
+        fig_clock.update_layout(title_text='HIGHEST MONTHLY EXPENSE', title_x=0.5)  # Add title using update_layout
+        
         # Display the Clock figure
         st.plotly_chart(fig_clock)        
         
