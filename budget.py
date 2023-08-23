@@ -127,9 +127,9 @@ def main():
         # Change the 'title' property to 'number'
         number={'suffix': " Ksh"},
         gauge={'axis': {'range': [None, highest_expense_amount * 1.2]},
-               'bar': {'color': "red"},
+               'bar': {'color': "#AC3E31"},
                'steps': [
-                   {'range': [0, highest_expense_amount * 0.5], 'color': "lightgray"},
+                   {'range': [0, highest_expense_amount * 0.5], 'color': "gray"},
                    {'range': [highest_expense_amount * 0.5, highest_expense_amount * 0.8], 'color': "gray"}],
                },
             ))
