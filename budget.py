@@ -75,7 +75,7 @@ def main():
         f"{most_frequent_category}<br>"
         f"{frequent_category_count} times<br>"
         f'</div>'
-        f'<div style="background-color: #7B68EE; padding: 10px; border-radius: 10px; width: 250px; margin-right: 20px;">'
+        f'<div style="background-color: #dcd0ff; padding: 10px; border-radius: 10px; width: 250px; margin-right: 20px;">'
         f'<strong style="color: black;">MOST EXPENSIVE ITEM</strong> <br>'
         f"{most_expensive_item['Use'].values[0]}<br>"
         f"Ksh. {int(most_expensive_item['Amount'].values[0]):,}"
