@@ -143,7 +143,7 @@ def main():
         fig_clock.update_layout(title_text=title_text, title_x=0.5)  # Add title using update_layout
         
         # Adjust the size of the gauge
-        fig_clock.update_layout(height=300, width=300)  # Change the height and width as needed
+        fig_clock.update_layout(height=500, width=500)  # Change the height and width as needed
         
         # Display the Clock figure
         st.plotly_chart(fig_clock)
