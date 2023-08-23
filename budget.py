@@ -122,28 +122,27 @@ def main():
         highest_expense_amount = newdf[newdf['Month'] == highest_monthly_expense]['Amount'].sum()
 
         fig_clock = go.Figure(go.Indicator(
-        mode="number+delta",
+        mode="gauge+number",
         value=highest_expense_amount,
+        domain={'x': [0, 1], 'y': [0, 0.8]},
         number={'suffix': " Ksh"},
-        delta={'reference': highest_monthly_expense.strftime('%b %Y')},  # Display month name above the amount
-        domain={'x': [0, 1], 'y': [0.2, 1]},  # Adjust domain for positioning
         gauge={'axis': {'range': [None, highest_expense_amount * 1.2]},
                'bar': {'color': "red"},
                'steps': [
                    {'range': [0, highest_expense_amount * 0.5], 'color': "lightgray"},
                    {'range': [highest_expense_amount * 0.5, highest_expense_amount * 0.8], 'color': "gray"}],
                },
-         ))
+    ))
 
         # Get the month name for the highest_monthly_expense
         month_name = calendar.month_name[highest_monthly_expense.month]
         
-        # Create the title that includes the month name and value
-        title_text = f"{month_name} - Highest Expense"
-        fig_clock.update_layout(title_text=title_text, title_x=0.5)  # Add title using update_layout
+        # Create a label with the month name above the gauge
+        label = f"{month_name}"
+        st.write(label)
         
         # Adjust the size of the gauge
-        fig_clock.update_layout(height=500, width=500)  # Change the height and width as needed
+        fig_clock.update_layout(height=300, width=300)  # Change the height and width as needed
         
         # Display the Clock figure
         st.plotly_chart(fig_clock)
