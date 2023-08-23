@@ -126,7 +126,7 @@ def main():
         value=highest_expense_amount,
         domain={'x': [0, 1], 'y': [0, 1]},
         # Change the 'title' property to 'number'
-        number={'suffix': " Ksh"},
+        number={'suffix': " "},
         gauge={'axis': {'range': [None, highest_expense_amount * 1.2]},
                 'bar': {'color': "#DBAE58"},                               
                 'steps': [
