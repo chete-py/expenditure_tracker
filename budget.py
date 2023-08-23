@@ -130,8 +130,7 @@ def main():
         ))
 
         fig_sunburst.update_layout(title={'text': 'AVERAGE MONTHLY EXPENDITURE', 'x': 0.5, 'xanchor': 'center'})
-
-        st.plotly_chart(fig)
+        
         st.plotly_chart(fig_sunburst)
     
     elif view == "New Item":
