@@ -134,10 +134,19 @@ def main():
                },
             ))
 
-        fig_clock.update_layout(title_text='HIGHEST MONTHLY EXPENSE', title_x=0.5)  # Add title using update_layout
+        # Get the month name for the highest_monthly_expense
+        month_name = calendar.month_name[highest_monthly_expense.month]
+        
+        # Create the title that includes the month name and value
+        title_text = f"{month_name} - Highest Expense"
+        fig_clock.update_layout(title_text=title_text, title_x=0.5)  # Add title using update_layout
+        
+        # Adjust the size of the gauge
+        fig_clock.update_layout(height=300, width=300)  # Change the height and width as needed
         
         # Display the Clock figure
-        st.plotly_chart(fig_clock)        
+        st.plotly_chart(fig_clock)
+        
         
     
     elif view == "New Item":
