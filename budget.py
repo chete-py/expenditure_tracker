@@ -116,6 +116,23 @@ def main():
         #fig = go.Figure(data=[go.Bar(x=newdf['Category'], y=newdf['Amount'])])
         #fig.update_layout(title='Category vs. Amount',xaxis_title='Category',yaxis_title='Amount',xaxis=dict(tickangle=-45),)
         #st.plotly_chart(fig)
+        
+        # Calculate average monthly expenditure
+        newdf['Date'] = pd.to_datetime(newdf['Date'])  # Convert 'Date' column to datetime
+        newdf['Month'] = newdf['Date'].dt.to_period('M')  # Create a new 'Month' column
+        monthly_average_expenditure = newdf.groupby('Month')['Amount'].mean()
+
+        # Create a Sunburst chart for average monthly expenditure
+        fig_sunburst = go.Figure(go.Sunburst(
+            labels=monthly_average_expenditure.index.strftime('%b %Y'),  # Format month labels
+            parents=[''] * len(monthly_average_expenditure),
+            values=monthly_average_expenditure.values,
+        ))
+
+        fig_sunburst.update_layout(title={'text': 'AVERAGE MONTHLY EXPENDITURE', 'x': 0.5, 'xanchor': 'center'})
+
+        st.plotly_chart(fig)
+        st.plotly_chart(fig_sunburst
     
     elif view == "New Item":
         # Add the dashboard elements here
