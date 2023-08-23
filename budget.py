@@ -80,7 +80,7 @@ def main():
         f"{most_expensive_item['Use'].values[0]}<br>"
         f"Ksh. {int(most_expensive_item['Amount'].values[0]):,}"
         f'</div>'
-        f'<div style="background-color: #99b27f; padding: 10px; border-radius: 10px; width: 250px;">'
+        f'<div style="background-color: #DBAE58; padding: 10px; border-radius: 10px; width: 250px;">'
         f'<strong style="color: black;">FREQUENT OUTLET</strong> <br>'
         f"{most_visited_store}<br>"
         f"{frequent_outlet_percentage:.0f}% of the time<br>"
@@ -105,7 +105,7 @@ def main():
                                   )
         
         # Set the color for bars
-        bar_color = '#3CB371'
+        bar_color = '#488A99'
         for trace in fig.data:
             trace.marker.color = bar_color
 
