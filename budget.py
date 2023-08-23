@@ -127,7 +127,8 @@ def main():
         domain={'x': [0, 1], 'y': [0, 1]},
         # Change the 'title' property to 'number'
         number={'suffix': " "},
-        gauge={'axis': {'range': [None, highest_expense_amount * 1.2]},
+        gauge={'shape': 'angular',
+               'axis': {'range': [None, highest_expense_amount * 1.2]},
                 'bar': {'color': "#DBAE58"},                               
                 'steps': [
                     {'range': [0, highest_expense_amount * 0.5], 'color': "gray"},
