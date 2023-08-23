@@ -128,14 +128,14 @@ def main():
         # Change the 'title' property to 'number'
         number={'suffix': " Ksh"},
         gauge={'axis': {'range': [None, highest_expense_amount * 1.2]},
-                'bar': {'color': "red"},
+                'bar': {'color': "#DBAE58"},                               
                 'steps': [
-                    {'range': [0, highest_expense_amount * 0.5], 'color': "lightgray"},
+                    {'range': [0, highest_expense_amount * 0.5], 'color': "gray"},
                     {'range': [highest_expense_amount * 0.5, highest_expense_amount * 0.8], 'color': "gray"}],
                 },
         ))
         
-        fig_clock.update_layout(title_text='HIGHEST MONTHLY EXPENSE', title_x=0.5)  # Add title using update_layout
+        fig_clock.update_layout(title_text='MONTH WITH HIGHEST EXPENDITURE', title_x=0.5)  # Add title using update_layout
         
         # Display the Clock figure
         st.plotly_chart(fig_clock)      
