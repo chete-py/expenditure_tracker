@@ -122,18 +122,18 @@ def main():
         highest_expense_amount = newdf[newdf['Month'] == highest_monthly_expense]['Amount'].sum()
 
         fig_clock = go.Figure(go.Indicator(
-        mode="gauge+number",
+        mode="number+delta",
         value=highest_expense_amount,
-        domain={'x': [0, 1], 'y': [0, 1]},
-        # Change the 'title' property to 'number'
         number={'suffix': " Ksh"},
+        delta={'reference': highest_monthly_expense.strftime('%b %Y')},  # Display month name above the amount
+        domain={'x': [0, 1], 'y': [0.2, 1]},  # Adjust domain for positioning
         gauge={'axis': {'range': [None, highest_expense_amount * 1.2]},
-               'bar': {'color': "#AC3E31"},
+               'bar': {'color': "red"},
                'steps': [
-                   {'range': [0, highest_expense_amount * 0.5], 'color': "gray"},
+                   {'range': [0, highest_expense_amount * 0.5], 'color': "lightgray"},
                    {'range': [highest_expense_amount * 0.5, highest_expense_amount * 0.8], 'color': "gray"}],
                },
-            ))
+         ))
 
         # Get the month name for the highest_monthly_expense
         month_name = calendar.month_name[highest_monthly_expense.month]
