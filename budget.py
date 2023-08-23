@@ -131,8 +131,8 @@ def main():
                'axis': {'range': [None, highest_expense_amount * 1.2]},
                 'bar': {'color': "#DBAE58"},                               
                 'steps': [
-                    {'range': [0, highest_expense_amount * 0.5], 'color': "gray"},
-                    {'range': [highest_expense_amount * 0.5, highest_expense_amount * 0.8], 'color': "gray"}],
+                    {'range': [0, highest_expense_amount * 0.5], 'color': "#488A99"},
+                    {'range': [highest_expense_amount * 0.5, highest_expense_amount * 0.8], 'color': "#488A99"}],
                 },
         ))
         
