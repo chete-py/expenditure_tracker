@@ -120,6 +120,9 @@ def main():
 
         # Get the highest expense amount for the corresponding month
         highest_expense_amount = newdf[newdf['Month'] == highest_monthly_expense]['Amount'].sum()
+        # Get the name of the month
+        month_name = highest_monthly_expense.strftime('%B %Y')
+
 
         fig_clock = go.Figure(go.Indicator(
         mode="gauge+number",
@@ -136,7 +139,7 @@ def main():
                 },
         ))
         
-        fig_clock.update_layout(title_text='MONTH WITH HIGHEST EXPENDITURE', title_x=0.5)  # Add title using update_layout
+        fig_clock.update_layout(title_text='MONTH WITH HIGHEST EXPENDITURE: {month_name}', title_x=0.5)  # Add title using update_layout
         
         # Display the Clock figure
         st.plotly_chart(fig_clock)      
