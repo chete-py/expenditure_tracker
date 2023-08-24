@@ -139,7 +139,7 @@ def main():
                 },
         ))
         
-        fig_clock.update_layout(title_text='MONTH WITH HIGHEST EXPENDITURE: {month_name}', title_x=0.5)  # Add title using update_layout
+        fig_clock.update_layout(title_text=f'MONTH WITH HIGHEST EXPENDITURE: {month_name}', title_x=0.5)  # Add title using update_layout
         
         # Display the Clock figure
         st.plotly_chart(fig_clock)      
