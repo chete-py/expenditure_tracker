@@ -115,13 +115,11 @@ def main():
         st.plotly_chart(fig)
 
         
-        # Calculate highest monthly expense
-        newdf['Date'] = pd.to_datetime(newdf['Date'])  # Convert 'Date' column to datetime
-        newdf['Month'] = newdf['Date'].dt.to_period('M')  # Create a new 'Month' column
-        highest_monthly_expense = newdf.groupby('Month')['Amount'].sum().idxmax()
+        newestdf = newdf.sort_values(by="Amount", ascending=False).head(5)
 
-        data.add_df(newestdf)
-        
+        data = Data()        
+
+        data.add_df(newestdf)        
 
         chart = Chart()
 
@@ -158,9 +156,15 @@ def main():
 
         chart.animate(Config({"x": "Amount", "y": "Product"}))
 
-        
-        # Display the Clock figure
-        st.plotly_chart(fig_clock)      
+        chart.animate(
+
+        Config({"coordSystem": "polar", "sort": "byValue"}), delay=1
+
+        )
+
+
+        html(chart._repr_html_(),width=750, height=500)
+        #      
         
         
     
@@ -203,4 +207,3 @@ def main():
        
 if __name__ == "__main__":
     main()
-
