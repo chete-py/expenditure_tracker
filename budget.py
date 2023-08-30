@@ -1,8 +1,10 @@
 import streamlit as st
+from streamlit.components.v1 import html
 import pandas as pd
 import numpy as np
 import plotly as px
 import calendar
+from ipyvizzu import Chart, Data, Config, Style
 import plotly.graph_objects as go
 
 # title of the app
@@ -78,7 +80,7 @@ def main():
         f'</div>'
         f'<div style="background-color: #50c878; padding: 10px; border-radius: 10px; width: 250px; margin-right: 20px;">'
         f'<strong style="color: black;">MOST EXPENSIVE ITEM</strong> <br>'
-        f"{most_expensive_item['Use'].values[0]}<br>"
+        f"{most_expensive_item['Product'].values[0]}<br>"
         f"Ksh. {int(most_expensive_item['Amount'].values[0]):,}"
         f'</div>'
         f'<div style="background-color: #DBAE58; padding: 10px; border-radius: 10px; width: 250px;">'
@@ -110,39 +112,60 @@ def main():
         for trace in fig.data:
             trace.marker.color = bar_color
 
-        st.plotly_chart(fig)
+        st.plotly_chart(fig)      
+        
+
+        newestdf = newdf.sort_values(by="Amount", ascending=False).head(5)
+
+        data = Data()
+
+        data.add_df(newestdf)
+        
+
+        chart = Chart()
+
+        chart = Chart(width="750px", height="400px",display="manual")        
+
+        chart.animate(data)
+        
+
+        chart.animate(
+
+            Config(
+
+                {
+
+                    "y": ["Amount", "Product"],
+
+                    "label": "Amount",
+
+                    "title": "TOP FIVE PURCHASES",
+
+                }
+
+            ),
+
+            delay=1,
+
+        )
+
+        chart.animate(
+
+            Config({"x": ["Category", "Amount"], "y": "Product", "color": "Product"}), delay=2
+
+        )
+
+        chart.animate(Config({"x": "Amount", "y": "Product"}))
 
         
-        # Calculate highest monthly expense
-        newdf['Date'] = pd.to_datetime(newdf['Date'])  # Convert 'Date' column to datetime
-        newdf['Month'] = newdf['Date'].dt.to_period('M')  # Create a new 'Month' column
-        highest_monthly_expense = newdf.groupby('Month')['Amount'].sum().idxmax()
 
-        # Get the highest expense amount for the corresponding month
-        highest_expense_amount = newdf[newdf['Month'] == highest_monthly_expense]['Amount'].sum()
-        # Get the name of the month
-        month_name = highest_monthly_expense.strftime('%B %Y')
+        chart.animate(
 
+            Config({"coordSystem": "polar", "sort": "byValue"}), delay=1
 
-        fig_clock = go.Figure(go.Indicator(
-        mode="gauge+number",
-        value=highest_expense_amount,
-        domain={'x': [0, 1], 'y': [0, 1]},
-        # Change the 'title' property to 'number'
-        number={'suffix': " "},
-        gauge={'shape': 'angular',
-               'axis': {'range': [None, highest_expense_amount * 1.2]},
-                'bar': {'color': "#DBAE58"},                               
-                'steps': [
-                    {'range': [0, highest_expense_amount * 0.5], 'color': "#488A99"},
-                    {'range': [highest_expense_amount * 0.5, highest_expense_amount * 0.8], 'color': "#488A99"}],
-                },
-        ))
-        
-        fig_clock.update_layout(title_text=f'MONTH WITH HIGHEST EXPENDITURE: {month_name}', title_x=0.5)  # Add title using update_layout
-        
-        # Display the Clock figure
-        st.plotly_chart(fig_clock)      
+        )
+
+        html(chart._repr_html_(),width=750, height=750)          
         
         
     
@@ -185,5 +208,4 @@ def main():
        
 if __name__ == "__main__":
     main()
-
 
