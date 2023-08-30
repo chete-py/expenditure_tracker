@@ -11,7 +11,7 @@ import plotly.graph_objects as go
 #st.title("MONTHLY EXPENSES")
 
 # Add a sidebar
-st.sidebar.image('newlogo.png', use_column_width=True)
+st.sidebar.image('collins_icon.png', use_column_width=True)
 st.sidebar.subheader("Navigation Pane")
 
 # Function to add a new entry to the CSV file
