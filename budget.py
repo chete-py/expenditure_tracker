@@ -1,8 +1,10 @@
 import streamlit as st
+from streamlit.components.v1 import html
 import pandas as pd
 import numpy as np
 import plotly as px
 import calendar
+from ipyvizzu import Chart, Data, Config, Style
 import plotly.graph_objects as go
 
 # title of the app
@@ -113,36 +115,57 @@ def main():
         st.plotly_chart(fig)
 
         
-        # Calculate highest monthly expense
-        newdf['Date'] = pd.to_datetime(newdf['Date'])  # Convert 'Date' column to datetime
-        newdf['Month'] = newdf['Date'].dt.to_period('M')  # Create a new 'Month' column
-        highest_monthly_expense = newdf.groupby('Month')['Amount'].sum().idxmax()
+        newestdf = newdf.sort_values(by="Amount", ascending=False).head(5)
 
-        # Get the highest expense amount for the corresponding month
-        highest_expense_amount = newdf[newdf['Month'] == highest_monthly_expense]['Amount'].sum()
-        # Get the name of the month
-        month_name = highest_monthly_expense.strftime('%B %Y')
+        data = Data()
 
-
-        fig_clock = go.Figure(go.Indicator(
-        mode="gauge+number",
-        value=highest_expense_amount,
-        domain={'x': [0, 1], 'y': [0, 1]},
-        # Change the 'title' property to 'number'
-        number={'suffix': " "},
-        gauge={'shape': 'angular',
-               'axis': {'range': [None, highest_expense_amount * 1.2]},
-                'bar': {'color': "#DBAE58"},                               
-                'steps': [
-                    {'range': [0, highest_expense_amount * 0.5], 'color': "#488A99"},
-                    {'range': [highest_expense_amount * 0.5, highest_expense_amount * 0.8], 'color': "#488A99"}],
-                },
-        ))
+        data.add_df(newestdf)
         
-        fig_clock.update_layout(title_text=f'MONTH WITH HIGHEST EXPENDITURE: {month_name}', title_x=0.5)  # Add title using update_layout
+
+        chart = Chart()
+
+        chart = Chart(width="750px", height="400px",display="manual")        
+
+        chart.animate(data)
         
-        # Display the Clock figure
-        st.plotly_chart(fig_clock)      
+
+        chart.animate(
+
+            Config(
+
+                {
+
+                    "y": ["Amount", "Product"],
+
+                    "label": "Amount",
+
+                    "title": "TOP FIVE PURCHASES",
+
+                }
+
+            ),
+
+            delay=1,
+
+        )
+
+        chart.animate(
+
+            Config({"x": ["Category", "Amount"], "y": "Product", "color": "Product"}), delay=2
+
+        )
+
+        chart.animate(Config({"x": "Amount", "y": "Product"}))
+
+        
+
+        chart.animate(
+
+            Config({"coordSystem": "polar", "sort": "byValue"}), delay=1
+
+        )
+
+        html(chart._repr_html_(),width=750, height=750)        
         
         
     
