@@ -1,1 +1,1 @@
-# expenses
+Tracking my daily expenses 
