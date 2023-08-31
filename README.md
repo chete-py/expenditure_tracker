@@ -1,1 +1,1 @@
-Tracking my daily expenses 
+Tracking my daily expenses. Visualizations using Plotly Library and ipyvizzu
