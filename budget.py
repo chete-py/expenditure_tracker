@@ -115,7 +115,7 @@ def main():
         st.plotly_chart(fig)
 
         
-        newestdf = newdf.sort_values(by="Amount", ascending=False).head(5)
+        newestdf = newdf.sort_values(by="Amount", ascending=False).head(3)
 
         data = Data()        
 
@@ -138,7 +138,7 @@ def main():
 
                     "label": "Amount",
 
-                    "title": "TOP FIVE PURCHASES",
+                    "title": "TOP THREE PURCHASES",
 
                 }
 
