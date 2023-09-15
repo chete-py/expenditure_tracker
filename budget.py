@@ -176,7 +176,7 @@ def main():
         new_entry_data = {}
         new_entry_data['Date'] = st.date_input("Date")
         new_entry_data['Product'] = st.text_input("Product")
-        new_entry_data['Category'] = st.selectbox("Policy Type:", ["HOUSE", "FAMILY AND FRIENDS", "SELF IMPROVEMENT", "ENTERTAINMENT", "WARDROBE"])        
+        new_entry_data['Category'] = st.selectbox("Category:", ["HOUSE", "FAMILY AND FRIENDS", "SELF IMPROVEMENT", "ENTERTAINMENT", "WARDROBE"])        
         new_entry_data['Store'] = st.text_input("Store")
         new_entry_data['Amount'] = st.number_input("Amount")
     
