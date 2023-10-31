@@ -7,9 +7,6 @@ import calendar
 from ipyvizzu import Chart, Data, Config, Style
 import plotly.graph_objects as go
 
-# title of the app
-#st.title("MONTHLY EXPENSES")
-
 # Add a sidebar
 st.sidebar.image('collins_icon.png', use_column_width=True)
 st.sidebar.subheader("Navigation Pane")
@@ -28,6 +25,7 @@ def add_entry_to_csv(data):
 
 
     newdf = newdf.to_html(index=False)
+    
     # Add inline CSS to change font size
     newdf = newdf.replace('<table', '<table style="font-size: 11px;"')       
 
@@ -163,10 +161,7 @@ def main():
         )
 
 
-        html(chart._repr_html_(),width=750, height=500)
-        #      
-        
-        
+        html(chart._repr_html_(),width=750, height=500)          
     
     elif view == "New Item":
         # Add the dashboard elements here
@@ -179,8 +174,6 @@ def main():
         new_entry_data['Category'] = st.selectbox("Category:", ["HOUSE", "FAMILY AND FRIENDS", "SELF IMPROVEMENT", "ENTERTAINMENT", "WARDROBE"])        
         new_entry_data['Store'] = st.text_input("Store")
         new_entry_data['Amount'] = st.number_input("Amount")
-    
-    # Add more columns as needed
 
         if st.button("Add Entry"):
             add_entry_to_csv(new_entry_data)
@@ -194,14 +187,6 @@ def main():
 
         lastdf = lastdf.to_html(index=False)
         last_df = lastdf.replace('<table', '<table style="font-size: 12px;"')
-
-        # Convert the data frame to Markdown table format
-        # markdown_table = lastdf.to_markdown(index=False)
-
-        # Display the Markdown-formatted table using st.markdown()
-        # st.markdown(markdown_table, unsafe_allow_html=True)
-        #st.table(lastdf)
-
         st.markdown(last_df, unsafe_allow_html=True)
         
        
